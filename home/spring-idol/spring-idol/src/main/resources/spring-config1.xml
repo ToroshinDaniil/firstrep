@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="foo.bar1"/>
+    <bean id="drums" class="foo.bar1.Drums"/>
+    <bean id="bass" class="foo.bar1.Bass"/>
+    <bean id="guitar" class="foo.bar1.Guitar"/>
+    <bean id="song1" class="foo.bar1.Song1">
+    <constructor-arg name="name" value="song1"/>
+    <constructor-arg name="text" value="fjdsnf irnfi qnd"/>
+    </bean>
+    <bean id="song2" class="foo.bar1.Song2">
+        <constructor-arg name="name" value="song2"/>
+        <constructor-arg name="text" value="fcabdfbr ynrndg"/>
+    </bean>
+    <bean id="song3" class="foo.bar1.Song3">
+        <constructor-arg name="name" value="song3"/>
+        <constructor-arg name="text" value="sdacsdg gsgrg"/>
+    </bean>
+    <bean id="bassplayer" class="foo.bar1.BassPlayer">
+    <constructor-arg name="ins" value="#{bass}"/>
+    </bean>
+    <bean id="drumsplayer" class="foo.bar1.DrumsPlayer">
+        <constructor-arg name="ins" value="#{drums}"/>
+    </bean>
+    <bean id="guitarplayer" class="foo.bar1.GuitarPlayer">
+        <constructor-arg name="ins" value="#{guitar}"/>
+    </bean>
+    <bean id="vocalist" class="foo.bar1.Vocal">
+        <constructor-arg name="ins" value="#{guitar}"/>
+        <constructor-arg name="s" value="#{song1}"/>
+    </bean>
+    <bean id="collectiveone" class="foo.bar1.CollectiveOne">
+        <property name="colone">
+            <list>
+                <ref bean="bassplayer"/>
+                <ref bean="vocalist"/>
+            </list>
+        </property>
+        <property name="songs">
+            <list>
+                <ref bean="song1"/>
+                <ref bean="song3"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="collectivetwo" class="foo.bar1.CollectiveTwo">
+        <property name="colone">
+            <list>
+                <ref bean="drumsplayer"/>
+                <ref bean="vocalist"/>
+                <ref bean="bassplayer"/>
+            </list>
+        </property>
+        <property name="songs">
+            <list>
+                <ref bean="song3"/>
+                <ref bean="song2"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="konf" class="foo.bar1.Konf">
+        <property name="collectives">
+            <list>
+                <ref bean="collectiveone"/>
+                <ref bean="collectivetwo"/>
+            </list>
+        </property>
+    </bean>
+</beans>
