@@ -7,6 +7,7 @@ import java.util.Collection;
  */
 public class Konf {
     Collection<Collective> collectives=null;
+    public Konf(Collection<Collective> collectives){this.collectives=collectives;}
     public void setCollectives(Collection<Collective> collectives){
         this.collectives=collectives;
     }
